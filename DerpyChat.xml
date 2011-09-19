@@ -1,0 +1,13 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="elements\vars.lua"/>
+	<Script file="elements\settings.lua"/>
+	<Script file="elements\panels.lua"/>
+	<Script file="elements\msgreplace.lua"/>
+	<Script file="elements\chat.lua"/>
+	<Script file="elements\hyperlinks.lua"/>
+	<Script file="elements\chattabs.lua"/>
+	<Script file="elements\chatbar.lua"/>
+	<Script file="elements\copybox.lua"/>
+	<Script file="elements\editbox.lua"/>
+	<Script file="elements\bubbles.lua"/>
+</Ui>
