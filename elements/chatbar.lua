@@ -122,39 +122,6 @@ local add_chanel = function(num)
 	end
 	chatbar_table[temp or (#chatbar_table+1)] = {"CHAT_MSG_CHANNEL","CHANNEL"..num,"/"..num.." ",true,num}
 end
-	
---load and check
-M.addafter(function()
-	lang_st = M.lang_st
-	for i in pairs(lang_st) do
-		add_chanel(i)
-	end
-	for i=8, #chatbar_table do
-		if chatbar_table[i] then
-			local p = chatbar_table[i][5]
-			local x
-			for d in pairs(lang_st) do
-				if d == p then x = true end
-			end
-			if not(x) then
-				chatbar_table[i] = nil
-			end
-		end
-	end
-	for i=1,#chatbar_table do
-		if chatbar_table[i] then
-			local y = setbutton(unpack(chatbar_table[i]))
-			if y then tinsert(all_buttons,y) end
-		end
-	end
-	for i=1,#all_buttons do
-		if i == 1 then
-			all_buttons[i]:SetPoint("LEFT",chatbar,8,0)
-		else
-			all_buttons[i]:SetPoint("LEFT",all_buttons[i-1],"RIGHT",2,0)
-		end
-	end
-end)
 
 local st_colors = M["media"].button
 local ccheck = function(self)
@@ -207,16 +174,45 @@ local mk_ch_border = function(par,chan,name,p)
 	return mk_swich_bt(f,p)
 end
 
-local bar
-M.call.chatbar = function()
-	if bar then bar:Show() return end
-	local st = {}
-	bar = M.make_settings(st,st,207,230,"TEH CHATBAR",true)
+local bar = M.make_settings_template("CHAT BAR",228,0)
+
+--load and check
+M.addafter(function()
+	lang_st = M.lang_st
+	for i in pairs(lang_st) do
+		add_chanel(i)
+	end
+	for i=8, #chatbar_table do
+		if chatbar_table[i] then
+			local p = chatbar_table[i][5]
+			local x
+			for d in pairs(lang_st) do
+				if d == p then x = true end
+			end
+			if not(x) then
+				chatbar_table[i] = nil
+			end
+		end
+	end
+	for i=1,#chatbar_table do
+		if chatbar_table[i] then
+			local y = setbutton(unpack(chatbar_table[i]))
+			if y then tinsert(all_buttons,y) end
+		end
+	end
+	for i=1,#all_buttons do
+		if i == 1 then
+			all_buttons[i]:SetPoint("LEFT",chatbar,8,0)
+		else
+			all_buttons[i]:SetPoint("LEFT",all_buttons[i-1],"RIGHT",2,0)
+		end
+	end
+	local st = {}	
 	for i=1,7 do
 		local c = chatbar_table[i][2]
 		local f = mk_ch_border(bar,c,_G[c],i)
 		if i == 1 then
-			f:SetPoint("TOP",0,-27)
+			f:SetPoint("TOP",0,-24)
 		else
 			f:SetPoint("TOP",st[i-1],"BOTTOM",0,-2)
 		end
@@ -232,6 +228,5 @@ M.call.chatbar = function()
 			temp = temp + 1
 		end
 	end
-	bar:SetHeight((#st+2)*27)
-	bar:Show()
-end
+	bar.h=floor(((#st+2)*27)+.5)
+end)

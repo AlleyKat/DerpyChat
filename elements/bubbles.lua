@@ -46,12 +46,11 @@ chatbubblehook:RegisterEvent("CHAT_MSG_MONSTER_PARTY") -- что это?
 chatbubblehook:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 chatbubblehook:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 
-local inserr = M.set_updater
-local updateallbubbles
-do
+M.addlast(function()
+	local inserr = M.set_updater
 	local WorldFrame = WorldFrame
 	local skinbubble = skinbubble
-	updateallbubbles = function()
+	local updateallbubbles = function()
 		local newnumkids = WorldFrame:GetNumChildren()
 		if newnumkids ~= numkids then
 			for i=numkids + 1, newnumkids do
@@ -68,7 +67,7 @@ do
 		end
 		inserr("remove","Derpy_Bubble_Chat_Update",.1)
 	end 
-end
-
--- Задержка в .1 секунду, поточу что кто-то слишком медленный
-chatbubblehook:SetScript("OnEvent",function() inserr(updateallbubbles,"Derpy_Bubble_Chat_Update",.1) end)
+	
+	-- Задержка в .1 секунду, поточу что кто-то слишком медленный
+	chatbubblehook:SetScript("OnEvent",function() inserr(updateallbubbles,"Derpy_Bubble_Chat_Update",.1) end)
+end)

@@ -98,9 +98,9 @@ local faneifyTab = function(frame, sel)
 		frame.middleSelectedTexture:Hide()
 		frame.rightSelectedTexture:Hide()
 
-		frame.leftSelectedTexture.Show = frame.leftSelectedTexture.Hide
-		frame.middleSelectedTexture.Show = frame.middleSelectedTexture.Hide
-		frame.rightSelectedTexture.Show = frame.rightSelectedTexture.Hide
+		frame.leftSelectedTexture.Show = M.null
+		frame.middleSelectedTexture.Show = M.null
+		frame.rightSelectedTexture.Show = M.null
 
 		frame.leftHighlightTexture:Hide()
 		frame.middleHighlightTexture:Hide()

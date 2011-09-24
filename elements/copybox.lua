@@ -30,11 +30,11 @@ local function CreatCopyFrame()
 	title:SetPoint("TOPLEFT",8,-6)
 	frame.title_ = title
 	
-	local scrollArea = CreateFrame("ScrollFrame", "CopyScroll", frame, "UIPanelScrollFrameTemplate")
-	scrollArea:SetPoint("TOPLEFT", frame, "TOPLEFT", 8, -30)
-	scrollArea:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -30, 8)
+	local scrollArea = CreateFrame("ScrollFrame", "DerpyCopyScroll", frame, "UIPanelScrollFrameTemplate")
+	scrollArea:SetPoint("TOPLEFT", frame, "TOPLEFT", 10, -30)
+	scrollArea:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -34, 10)
 
-	editBox = CreateFrame("EditBox", "CopyBox", frame)
+	editBox = CreateFrame("EditBox", "DerpyCopyBox", frame)
 	editBox:SetMultiLine(true)
 	editBox:SetMaxLetters(99999)
 	editBox:EnableMouse(true)
@@ -48,6 +48,8 @@ local function CreatCopyFrame()
 	local close = CreateFrame("Button", "CopyCloseButton", frame, "UIPanelCloseButton")
 	close:SetPoint("TOPRIGHT", frame, "TOPRIGHT")
 	frame:SetScript("OnHide",reset_copybtn)
+	
+	M.unscroll(_G.DerpyCopyScrollScrollBar)
 	
 end
 
